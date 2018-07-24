@@ -2858,7 +2858,7 @@
 			var val = !this.value ? "" : this.value; // mental IE8 fix :-(
 	
 			/* Now do the filter */
-			if ( val != previousSearch.sSearch ) {
+			if ( val != previousSearch.sSearch && (!settings.searchConditions || settings.searchConditions(val))) {
 				_fnFilterComplete( settings, {
 					"sSearch": val,
 					"bRegex": previousSearch.bRegex,
@@ -6277,6 +6277,7 @@
 				"fnStateLoadCallback",
 				"fnStateSaveCallback",
 				"renderer",
+				"searchConditions",
 				"searchDelay",
 				"rowId",
 				[ "iCookieDuration", "iStateDuration" ], // backwards compat
@@ -13309,6 +13310,8 @@
 		 *  @default null
 		 */
 		"sDom": null,
+
+		"searchConditions": null,
 	
 		/**
 		 * Search delay (in mS)
